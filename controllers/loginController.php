@@ -17,11 +17,14 @@ class LoginController {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 if ($this->loginNegocio->authenticate($email, $password)) {
-                    // Se a autenticação for bem sucedida, redireciona para
-                    // a página de client.php
-                    header("Location: ../views/index.php");
+                    $user = $this->loginNegocio->getUserByEmail($email);
+                    session_start();
+                    $_SESSION['user_id'] = $user['IDCliente'];
+                    $_SESSION['usuario'] = $user['Usuario'];
+                    $_SESSION['admin'] = $user['SuperUser'];
+                    header("Location: ../views/index.php?username=" . urlencode($user['Usuario']));
                 } else {
-                    die();
+                    die('Login falhou');
                 }
             }
         } catch (Exception $e) {

@@ -20,5 +20,17 @@ class LoginDados {
             return false;
         }
     }
+
+    public function getUserByEmail($email) {
+        try {
+            $stmt = $this->database->prepare("select * from clients where Email = ?");
+            $stmt->bindValue(1, $email);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 ?>

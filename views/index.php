@@ -1,9 +1,18 @@
+<?php
+  session_start();
+  if (!isset($_SESSION['user_id'])) {
+    header("../public/index.php");
+    exit();
+
+
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Pedro Grizotte</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../wwwroot/css/style.css">
 </head>
 <body>
@@ -19,7 +28,7 @@
             <a href=""><ion-icon name="person-outline"></ion-icon></a>
         </div>
         <div class="sidebar-icon" data-tooltip="Payments">
-            <a href=""><ion-icon name="card-outline"></ion-icon></a>
+            <a href="./Services/payment.php"><ion-icon name="card-outline"></ion-icon></a>
         </div>
         <div class="sidebar-icon" data-tooltip="Settings">
             <a href=""><ion-icon name="settings-outline"></ion-icon></a>
@@ -34,7 +43,7 @@
 
       <div class="main-content">
         <div class="header">
-          <h1>Dashboard</h1>
+          <h1>Dashboard - <?php echo $_SESSION['usuario'];?></h1>
           <div class="search-bar">
             <span>🔍</span>
             <input type="text" placeholder="Search" />

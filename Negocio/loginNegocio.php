@@ -17,5 +17,10 @@ class LoginNegocio {
         }
         return false;
     }
+
+    public function getUserByEmail($email) {
+        // Recebe o email da controller, e busca o usuário
+        return $this->loginDados->getUserByEmail($email);
+    }
 }
 ?>
